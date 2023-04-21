@@ -84,15 +84,17 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
       }
       if(tree->lower_than(key,auxArbol->pair->key))
       {
+        tree->current =auxArbol->left; 
         auxArbol = auxArbol->left;
       }
       else
       {
+        tree->current=auxArbol->right;
         auxArbol = auxArbol->right;
       }
     
     }
-    return NULL;
+    
 }
 
 
