@@ -145,6 +145,13 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 
 
 Pair * upperBound(TreeMap * tree, void* key) {
+  TreeNode *auxBase = tree->root;
+  TreeNode *auxBuscado = NULL;
+  while(auxBase != NULL)
+    {
+      if(tree->is)
+    }
+  
     return NULL;
 }
 
