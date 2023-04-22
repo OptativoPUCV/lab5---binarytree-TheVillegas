@@ -52,8 +52,15 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
   Pair *ubicacion = searchTreeMap(tree, key);
   if(ubicacion != NULL) return;
 
+  TreeNode *aux =(TreeNode*)malloc(sizeof(TreeNode));
+  aux->pair = (Pair*)malloc(sizeof(Pair));
+  aux->pair->key =key;
+  aux->pair->value = value;
+  aux->left = aux->right = aux->parent = NULL;
+  
+  
 
-  TreeNode *aux = tree->root;
+  
   if(aux ==NULL)
   {
     tree->root = aux;
