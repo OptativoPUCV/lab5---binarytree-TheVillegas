@@ -57,10 +57,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
   aux->pair->key =key;
   aux->pair->value = value;
   aux->left = aux->right = aux->parent = NULL;
-  
-  
 
-  
   if(aux ==NULL)
   {
     tree->root = aux;
@@ -152,7 +149,17 @@ Pair * upperBound(TreeMap * tree, void* key) {
 }
 
 Pair * firstTreeMap(TreeMap * tree) {
-    return NULL;
+  if(tree->root == NULL) return NULL;
+
+  TreeNode *aux = tree->root;
+  while(aux->left != NULL)
+    {
+      aux = aux->left;
+    }
+
+  tree->current = aux;
+  return aux->pair;
+   
 }
 
 Pair * nextTreeMap(TreeMap * tree) {
