@@ -168,9 +168,9 @@ Pair * nextTreeMap(TreeMap * tree) {
   if(tree->current->right != NULL)
   {
     TreeNode *aux = tree->current->right;
-    while(aux->right!=NULL)
+    while(aux->left!=NULL)
       {
-        aux = aux->right;
+        aux = aux->left;
       }
     tree->current = aux;
     return tree->current->pair;
