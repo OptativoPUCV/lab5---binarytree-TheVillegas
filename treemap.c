@@ -104,69 +104,45 @@ void removeNode(TreeMap * tree, TreeNode* node) {
 
   if (node == NULL) return;
 
-  if (node->left == NULL && node->right == NULL) {
-    // Nodo sin hijos
-    if (node == tree->root) {
+  if (node->left == NULL && node->right == NULL) 
+  {
+    if (node == tree->root) 
+    { 
       tree->root = NULL;
-    } else {
-      if (node == node->parent->left) {
-        node->parent->left = NULL;
-      } else {
-        node->parent->right = NULL;
-      }
     }
-    if (node == tree->current) {
-      tree->current = NULL;
+    else if (node == node->parent->left) 
+    { 
+      node->parent->left = NULL;
+    } 
+    else
+    { 
+      node->parent->right = NULL;
     }
-    free(node->pair);
     free(node);
-    return;
-  } else if (node->left == NULL) {
-    // Nodo con un hijo derecho
-    if (node == tree->root) {
-      tree->root = node->right;
-      node->right->parent = NULL;
-    } else {
-      node->right->parent = node->parent;
-      if (node == node->parent->left) {
-        node->parent->left = node->right;
-      } else {
-        node->parent->right = node->right;
-      }
+  }
+  else if (node->left == NULL || node->right == NULL) 
+  {
+    TreeNode child = node->left ? node->left : node->right; 
+    child->parent = node->parent;
+    if (node == tree->root) 
+    { 
+      tree->root = child;
+    } 
+    else if (node == node->parent->left) 
+    {
+      node->parent->left = child;
+    } 
+    else 
+    { 
+      node->parent->right = child;
     }
-    if (node == tree->current) {
-      tree->current = node->right;
-    }
-    free(node->pair);
-    free(node);
-    return;
-  } else if (node->right == NULL) {
-    // Nodo con un hijo izquierdo
-    if (node == tree->root) {
-      tree->root = node->left;
-      node->left->parent = NULL;
-    } else {
-      node->left->parent = node->parent;
-      if (node == node->parent->left) {
-        node->parent->left = node->left;
-      } else {
-        node->parent->right = node->left;
-      }
-    }
-    if (node == tree->current) {
-      tree->current = node->left;
-    }
-    free(node->pair);
-    free(node);
-    return;
-  } else {
-    // Nodo con dos hijos
-    TreeNode *min = node->right;
-    while (min->left != NULL) {
-      min = min->left;
-    }
-    node->pair = min->pair;
-    removeNode(tree, min);
+    free(node); 
+  }
+  else {
+    TreeNode *minNode = minimum(node->right); 
+    node->pair->key = minNode->pair->key; 
+    node->pair->value = minNode->pair->value;
+    removeNode(tree, minNode); 
   }
 }
 
