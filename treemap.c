@@ -122,8 +122,11 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     if(node == tree->current)
     {
       tree->current = NULL;
-      return;
+      
     }
+    detroyTreeNode(node);
+    return;
+    
   }
   
   
